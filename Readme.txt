@@ -1,1 +1,1 @@
-This a subject based MiniProject dir
+Aerodynamics misc projects
