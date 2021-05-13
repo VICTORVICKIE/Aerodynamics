@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.ma as ma
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation,FFMpegWriter
+from matplotlib.animation import FuncAnimation,FFMpegWriter, PillowWriter
 
 
 def Joukowski_transformation(z, lam, alpha):			 #Joukowski transformation
@@ -87,7 +87,11 @@ def animate(i):
                                                            #since c_flow(Z)=C_flow(csi(Z))
     ax.plot(Airfoil.real, Airfoil.imag) 
     return cp
-anim = FuncAnimation(fig,animate,np.arange(-15,15),repeat=False)
-#anim.save('animation.mp4', writer=FFMpegWriter())         #if file not find error occurs u need ffmpeg in python directory
+
+animate_range = np.arange(-15,16,2.).tolist() + np.arange(14,-16,-2.).tolist()
+anim = FuncAnimation(fig, animate, animate_range, repeat=True)
 plt.show()
+
+anim.save('animation.gif', writer=PillowWriter(fps=10))         #if file not find error occurs u need ffmpeg in python directory
+
         
